@@ -14,9 +14,11 @@
 *.pem
 
 # Javascript things
+marketplace.build.log
 node_modules
 jspm_packages
 ./packed
+dist
 /.pnp
 .pnp.js
 *.tgz
