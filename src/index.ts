@@ -15,9 +15,12 @@ interface InstanceScreenConfiguration {
   hideTabs?: Array<"Test" | "Executions" | "Monitors" | "Logs">;
 }
 
+type TriggerDetails = "default" | "default-open" | "hidden";
+
 interface ConfigurationWizardConfiguration {
   hideSidebar?: boolean;
   isInModal?: boolean;
+  triggerDetailsConfiguration?: TriggerDetails;
 }
 
 export interface ScreenConfiguration {
