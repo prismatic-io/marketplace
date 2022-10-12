@@ -1,48 +1,43 @@
 const headStyles = /* html */ `<style>
-  .modal {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.3s ease-in;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+  .pio__modal {
+    backdrop-filter: blur(10px);
+    background: rgb(119 119 119 / 29%);
     bottom: 0;
     display: block;
-    background: rgb(119 119 119 / 29%);
-    backdrop-filter: blur(10px);
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all 0.3s ease-in;
+    visibility: hidden;
     z-index: 9999;
   }
-
-  .modal.is-visible {
-    visibility: visible;
+  .pio__modal.pio__modal--is_visible {
     opacity: 1;
+    visibility: visible;
   }
-
-  .modal-dialog {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  .pio__dialog {
     background: #fff;
-    width: 80vw;
-    height: 80vh;
-    margin: auto;
     border-radius: 4px;
+    bottom: 0;
+    height: 80vh;
+    left: 0;
+    margin: auto;
     overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
   }
-
-  .close-modal {
+  .pio__closeBtn {
     all: unset;
     cursor: pointer;
     position: absolute;
     right: 1.5em;
     top: 1.3em;
   }
-
-  .iframe-container {
+  .pio__iframe {
     height: 100%
   }
 </style>`;

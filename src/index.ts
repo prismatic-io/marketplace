@@ -83,7 +83,7 @@ export const assertInit = (functionName: string) => {
 
 const getModal = () => document.querySelector(modalSelector);
 
-const isVisible = "is-visible";
+const isVisible = "pio__modal--is_visible";
 
 const openDialog = () => getModal()?.classList.add(isVisible);
 

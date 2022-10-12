@@ -28,10 +28,10 @@ const init = (options?: InitOptions) => {
   const rootElement = document.createElement("div");
   rootElement.id = rootElementId;
   rootElement.innerHTML = /* html */ `
-    <div class="modal">
-      <div class="modal-dialog">
-        <button class="close-modal" aria-label="close modal" data-close>✕</button>
-        <div class="iframe-container"></div>
+    <div class="pio__modal">
+      <div class="pio__dialog">
+        <button class="pio__closeBtn" aria-label="close modal" data-close>✕</button>
+        <div class="pio__iframe"></div>
       </div>
     </div>
   `;
@@ -55,7 +55,7 @@ const init = (options?: InitOptions) => {
   closeButtonElement?.addEventListener("click", () => closeDialog());
 
   document.addEventListener("keyup", (e) => {
-    if (e.key === "Escape" && document.querySelector(".modal.is-visible")) {
+    if (e.key === "Escape" && document.querySelector(".pio__modal--is_visible")) {
       closeDialog();
     }
   });
