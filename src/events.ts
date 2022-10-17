@@ -57,6 +57,7 @@ export enum PrismaticMessageEvent {
   INSTANCE_CONFIGURATION_CLOSED = "INSTANCE_CONFIGURATION_CLOSED",
   INSTANCE_CREATED = "INSTANCE_CREATED",
   INSTANCE_DELETED = "INSTANCE_DELETED",
+  INSTANCE_DEPLOYED = "INSTANCE_DEPLOYED",
   SET_CONFIG_VAR = "SET_CONFIG_VAR",
 }
 
@@ -90,6 +91,10 @@ export type MessageData =
     }
   | {
       event: PrismaticMessageEvent.INSTANCE_DELETED;
+      data: InstanceData;
+    }
+  | {
+      event: PrismaticMessageEvent.INSTANCE_DEPLOYED;
       data: InstanceData;
     };
 
