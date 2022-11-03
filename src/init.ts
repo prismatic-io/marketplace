@@ -55,7 +55,10 @@ const init = (options?: InitOptions) => {
   closeButtonElement?.addEventListener("click", () => closeDialog());
 
   document.addEventListener("keyup", (e) => {
-    if (e.key === "Escape" && document.querySelector(".pio__modal--is_visible")) {
+    if (
+      e.key === "Escape" &&
+      document.querySelector(".pio__modal--is_visible")
+    ) {
       closeDialog();
     }
   });

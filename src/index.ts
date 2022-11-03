@@ -17,6 +17,10 @@ interface InstanceScreenConfiguration {
 
 type TriggerDetails = "default" | "default-open" | "hidden";
 
+interface MarketplaceConfiguration {
+  configuration: "allow-details" | "always-show-details" | "disallow-details";
+}
+
 interface ConfigurationWizardConfiguration {
   hideSidebar?: boolean;
   isInModal?: boolean;
@@ -26,6 +30,7 @@ interface ConfigurationWizardConfiguration {
 export interface ScreenConfiguration {
   instance?: InstanceScreenConfiguration;
   configurationWizard?: ConfigurationWizardConfiguration;
+  marketplace: MarketplaceConfiguration;
 }
 
 interface OptionsBase {
