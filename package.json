@@ -1,7 +1,12 @@
 {
   "name": "@prismatic-io/marketplace",
   "description": "Embed your prismatic.io integration marketplace within your existing application",
-  "keywords": ["prismatic","marketplace","iPaaS","integration"],
+  "keywords": [
+    "prismatic",
+    "marketplace",
+    "iPaaS",
+    "integration"
+  ],
   "homepage": "https://prismatic.io",
   "bugs": {
     "url": "https://github.com/prismatic-io/marketplace"
@@ -11,7 +16,7 @@
     "url": "https://github.com/prismatic-io/marketplace.git"
   },
   "license": "MIT",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
