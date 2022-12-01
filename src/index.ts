@@ -1,7 +1,8 @@
 import init from "./init";
 import authenticate from "./authenticate";
-import { setConfigVars } from "./events";
+import { isIframe, postMessage, setConfigVars } from "./events";
 import { modalSelector, iframeContainerSelector } from "./selectors";
+import { Phrases } from "./phrases";
 
 type Theme = "DARK" | "LIGHT";
 
@@ -33,14 +34,20 @@ export interface ScreenConfiguration {
   marketplace: MarketplaceConfiguration;
 }
 
+export interface Translation {
+  debugMode?: boolean;
+  phrases?: Phrases;
+}
+
 interface OptionsBase {
   autoFocusIframe?: boolean;
   filters?: {
     category?: string;
     label?: string;
   };
-  theme?: Theme;
+  translation?: Translation;
   screenConfiguration?: ScreenConfiguration;
+  theme?: Theme;
 }
 
 interface PopoverOptions extends OptionsBase {
@@ -59,10 +66,11 @@ const isPopover = (options: Options): options is PopoverOptions =>
 
 export interface StateProps {
   filters: Filters;
-  screenConfiguration?: ScreenConfiguration;
   initComplete: boolean;
   jwt: string;
+  translation?: Translation;
   prismaticUrl?: string;
+  screenConfiguration?: ScreenConfiguration;
   theme?: Theme;
 }
 
@@ -73,6 +81,7 @@ export const state: StateProps = {
   },
   initComplete: false,
   jwt: "",
+  translation: undefined,
   prismaticUrl: "https://app.prismatic.io",
   screenConfiguration: undefined,
   theme: undefined,
@@ -110,9 +119,6 @@ export const closeDialog = () => {
 
 const getIframeContainerElement = (selector: string) =>
   document.querySelector(selector);
-
-const isIframe = (element?: Element | null): element is HTMLIFrameElement =>
-  Boolean(element && element.tagName === "IFRAME");
 
 const setIframe = (
   route: string,
@@ -192,6 +198,19 @@ const setIframe = (
 
   if (isPopover(options)) {
     openDialog();
+  }
+
+  // send data from parent window to app iframe
+  if (iframeElement) {
+    iframeElement.onload = () => {
+      // translation
+      if (state.translation) {
+        postMessage({
+          iframe: iframeElement,
+          event: { event: "SET_TRANSLATION", data: state.translation },
+        });
+      }
+    };
   }
 };
 

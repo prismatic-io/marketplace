@@ -59,6 +59,7 @@ export enum PrismaticMessageEvent {
   INSTANCE_DELETED = "INSTANCE_DELETED",
   INSTANCE_DEPLOYED = "INSTANCE_DEPLOYED",
   SET_CONFIG_VAR = "SET_CONFIG_VAR",
+  SET_TRANSLATION = "SET_TRANSLATION",
 }
 
 interface InstanceData {
@@ -97,41 +98,6 @@ export type MessageData =
       event: PrismaticMessageEvent.INSTANCE_DEPLOYED;
       data: InstanceData;
     };
-
-interface BasePostMessageProps {
-  event: unknown;
-}
-
-interface SelectorPostMessageProps extends BasePostMessageProps {
-  selector?: string;
-}
-
-interface ElementPostMessageProps extends BasePostMessageProps {
-  iframe: Element;
-}
-
-type PostMessageProps = SelectorPostMessageProps | ElementPostMessageProps;
-
-const isIframePostMessage = (
-  props: PostMessageProps
-): props is ElementPostMessageProps => "iframe" in props;
-
-const postMessage = (props: PostMessageProps) => {
-  const iframeElement = isIframePostMessage(props)
-    ? props.iframe
-    : getIframeElement(props.selector);
-
-  if (!isIframe(iframeElement)) {
-    return;
-  }
-
-  iframeElement.contentWindow?.postMessage(props.event, "*");
-};
-
-export const getMessageIframe = (event: MessageEvent) =>
-  Array.from(document.getElementsByTagName("iframe")).find(
-    (iframe) => iframe.contentWindow === event.source
-  );
 
 interface BaseConfigVarInput {
   value: string;
@@ -184,8 +150,45 @@ export const setConfigVars = ({ configVars, ...props }: SetConfigVarsProps) => {
   });
 };
 
+interface BasePostMessageProps {
+  event: unknown;
+}
+
+interface SelectorPostMessageProps extends BasePostMessageProps {
+  selector?: string;
+}
+
+interface ElementPostMessageProps extends BasePostMessageProps {
+  iframe: Element;
+}
+
+type PostMessageProps = SelectorPostMessageProps | ElementPostMessageProps;
+
+export const postMessage = (props: PostMessageProps) => {
+  const iframeElement = isIframePostMessage(props)
+    ? props.iframe
+    : getIframeElement(props.selector);
+
+  if (!isIframe(iframeElement)) {
+    return;
+  }
+
+  iframeElement.contentWindow?.postMessage(props.event, "*");
+};
+
+export const getMessageIframe = (event: MessageEvent) =>
+  Array.from(document.getElementsByTagName("iframe")).find(
+    (iframe) => iframe.contentWindow === event.source
+  );
+
 const getIframeElement = (selector: string | undefined) =>
   document.querySelector(`${selector || iframeContainerSelector} > iframe`);
 
-const isIframe = (element?: Element | null): element is HTMLIFrameElement =>
+const isIframePostMessage = (
+  props: PostMessageProps
+): props is ElementPostMessageProps => "iframe" in props;
+
+export const isIframe = (
+  element?: Element | null
+): element is HTMLIFrameElement =>
   Boolean(element && element.tagName === "IFRAME");
