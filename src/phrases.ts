@@ -20,7 +20,7 @@ export enum PhraseNamespace {
   MARKETPLACE_NOT_FOUND = "app.marketplace-not-found",
 }
 
-interface SharedPhrases {
+export interface SharedPhrases {
   // common
   "common.loading": SimplePhrase;
   "common.saving": SimplePhrase;
@@ -225,7 +225,7 @@ interface SharedPhrases {
   "executionOptions.title": SimplePhrase;
 }
 
-interface UniquePhrases {
+export interface UniquePhrases {
   // marketplace listing
   "integration-marketplace__card.activateLabel": SimplePhrase;
   "integration-marketplace__card.pausedLabel": SimplePhrase;
