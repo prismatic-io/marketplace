@@ -20,7 +20,7 @@ export enum PhraseNamespace {
   MARKETPLACE_NOT_FOUND = "app.marketplace-not-found",
 }
 
-export interface SharedPhrases {
+interface SharedPhrases {
   // common
   "common.loading": SimplePhrase;
   "common.saving": SimplePhrase;
@@ -31,7 +31,7 @@ export interface SharedPhrases {
   "deleteDialog.confirmRequiredTextValidation": ComplexPhrase<{
     requiredText: string;
   }>;
-  "deleteDialog.confirmText": ComplexPhrase<{ requiredText: string }>;
+  "deleteDialog.confirmText": SimplePhrase;
   "deleteDialog.openButton": ComplexPhrase<{ removeType: string }>;
   "deleteDialog.requiredText": SimplePhrase;
   "deleteDialog.title": SimplePhrase;

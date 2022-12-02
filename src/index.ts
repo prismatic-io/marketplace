@@ -1,6 +1,11 @@
 import init from "./init";
 import authenticate from "./authenticate";
-import { isIframe, postMessage, setConfigVars } from "./events";
+import {
+  isIframe,
+  postMessage,
+  PrismaticMessageEvent,
+  setConfigVars,
+} from "./events";
 import { modalSelector, iframeContainerSelector } from "./selectors";
 import { Phrases } from "./phrases";
 
@@ -200,14 +205,15 @@ const setIframe = (
     openDialog();
   }
 
-  // send data from parent window to app iframe
   if (iframeElement) {
     iframeElement.onload = () => {
-      // translation
       if (state.translation) {
         postMessage({
           iframe: iframeElement,
-          event: { event: "SET_TRANSLATION", data: state.translation },
+          event: {
+            event: PrismaticMessageEvent.SET_TRANSLATION,
+            data: state.translation,
+          },
         });
       }
     };
