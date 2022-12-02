@@ -1,13 +1,13 @@
 import init from "./init";
 import authenticate from "./authenticate";
+import { modalSelector, iframeContainerSelector } from "./selectors";
+import { Phrases } from "./phrases";
 import {
   isIframe,
   postMessage,
   PrismaticMessageEvent,
   setConfigVars,
 } from "./events";
-import { modalSelector, iframeContainerSelector } from "./selectors";
-import { Phrases } from "./phrases";
 
 type Theme = "DARK" | "LIGHT";
 
@@ -156,13 +156,6 @@ const setIframe = (
     jwt: state.jwt,
   });
 
-  if (state.screenConfiguration) {
-    queryParams.set(
-      "screenConfiguration",
-      JSON.stringify(state.screenConfiguration)
-    );
-  }
-
   if (state.theme) {
     queryParams.set("theme", state.theme);
   }
@@ -213,6 +206,16 @@ const setIframe = (
           event: {
             event: PrismaticMessageEvent.SET_TRANSLATION,
             data: state.translation,
+          },
+        });
+      }
+
+      if (state.screenConfiguration) {
+        postMessage({
+          iframe: iframeElement,
+          event: {
+            event: PrismaticMessageEvent.SET_SCREEN_CONFIGURATION,
+            data: state.screenConfiguration,
           },
         });
       }
