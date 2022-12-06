@@ -3,7 +3,10 @@ import headStyles from "./headStyles";
 import { rootElementId, modalSelector } from "./selectors";
 
 export interface InitOptions
-  extends Pick<StateProps, "screenConfiguration" | "prismaticUrl" | "theme">,
+  extends Pick<
+      StateProps,
+      "screenConfiguration" | "prismaticUrl" | "theme" | "translation"
+    >,
     Partial<Pick<StateProps, "filters">> {}
 
 const init = (options?: InitOptions) => {
