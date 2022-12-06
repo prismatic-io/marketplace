@@ -67,6 +67,10 @@ interface SharedPhrases {
   "apiKeyDialog.title": SimplePhrase;
   "apiKeyDialog.updateButton": SimplePhrase;
 
+  "activateIntegrationDialog.banner.text--isNotConfigurable": ComplexPhrase<{ organization?: string }>;
+  "activateIntegrationDialog.cancelButton": SimplePhrase;
+  "activateIntegrationDialog.configureButton": SimplePhrase;
+
   // filter bar
   "filterBar.breadcrumb.integrationMarketplace": SimplePhrase;
   "filterBar.openFiltersButton": SimplePhrase;
@@ -126,6 +130,7 @@ interface SharedPhrases {
   "detail.categoryLabel": SimplePhrase;
   "detail.configVariableLabel": SimplePhrase;
   "detail.customerLabel": SimplePhrase;
+  "detail.descriptionLabel": SimplePhrase;
   "detail.executionLabel": SimplePhrase;
   "detail.executionText": SimplePhrase;
   "detail.instanceLabel": SimplePhrase;
