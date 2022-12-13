@@ -60,6 +60,7 @@ interface SharedPhrases {
   "configurationWizardDialog.cancelButton": SimplePhrase;
   "configurationWizardDialog.finishButton": SimplePhrase;
   "configurationWizardDialog.nextButton": SimplePhrase;
+  "configurationWizardDialog.previousButton": SimplePhrase;
 
   "apiKeyDialog.cancelButton": SimplePhrase;
   "apiKeyDialog.generateApiKeyButton": SimplePhrase;
@@ -73,6 +74,7 @@ interface SharedPhrases {
 
   // filter bar
   "filterBar.breadcrumb.integrationMarketplace": SimplePhrase;
+  "filterBar.breadcrumb.activeIntegrations": SimplePhrase;
   "filterBar.openFiltersButton": SimplePhrase;
   "filterBar.clearFiltersButton": SimplePhrase;
   "filterBar.title": SimplePhrase;
