@@ -61,6 +61,7 @@ interface SharedPhrases {
   "configurationWizardDialog.finishButton": SimplePhrase;
   "configurationWizardDialog.nextButton": SimplePhrase;
   "configurationWizardDialog.previousButton": SimplePhrase;
+  "configurationWizardDialog.previousWarningText": SimplePhrase;
 
   "apiKeyDialog.cancelButton": SimplePhrase;
   "apiKeyDialog.generateApiKeyButton": SimplePhrase;
