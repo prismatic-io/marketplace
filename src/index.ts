@@ -27,6 +27,11 @@ interface MarketplaceConfiguration {
   configuration: "allow-details" | "always-show-details" | "disallow-details";
 }
 
+interface InitializingConfiguration {
+  background: string;
+  color: string;
+}
+
 interface ConfigurationWizardConfiguration {
   hideSidebar?: boolean;
   isInModal?: boolean;
@@ -34,9 +39,10 @@ interface ConfigurationWizardConfiguration {
 }
 
 export interface ScreenConfiguration {
-  instance?: InstanceScreenConfiguration;
   configurationWizard?: ConfigurationWizardConfiguration;
-  marketplace: MarketplaceConfiguration;
+  instance?: InstanceScreenConfiguration;
+  initializing?: InitializingConfiguration;
+  marketplace?: MarketplaceConfiguration;
 }
 
 export interface Translation {
@@ -166,6 +172,13 @@ const setIframe = (
 
   if (state.filters?.label) {
     queryParams.set("labelSearch", state.filters.label);
+  }
+
+  if (state.screenConfiguration?.initializing) {
+    queryParams.set(
+      "initializing",
+      JSON.stringify(state.screenConfiguration.initializing)
+    );
   }
 
   if (state.filters) {
