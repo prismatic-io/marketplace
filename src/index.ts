@@ -29,7 +29,9 @@ interface MarketplaceConfiguration {
 }
 
 interface InitializingConfiguration {
+  /** The background color of the loading screen */
   background: string;
+  /** The font color of the loading screen text and loading icon */
   color: string;
 }
 
