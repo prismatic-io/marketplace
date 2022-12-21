@@ -1,4 +1,4 @@
-import _ from "lodash";
+import merge from "lodash.merge";
 import init from "./init";
 import authenticate from "./authenticate";
 import { modalSelector, iframeContainerSelector } from "./selectors";
@@ -155,7 +155,7 @@ const setIframe = (
     Object.entries(options).forEach(([key, value]) => {
       if (key in state) {
         if (state[key] instanceof Object) {
-          state[key] = _.merge(state[key], value);
+          state[key] = merge(state[key], value);
         } else {
           state[key] = value;
         }
