@@ -25,6 +25,8 @@ type TriggerDetails = "default" | "default-open" | "hidden";
 
 interface MarketplaceConfiguration {
   configuration: "allow-details" | "always-show-details" | "disallow-details";
+  /** Include all active Integrations including those activated outside the Marketplace. */
+  includeActiveIntegrations?: boolean;
 }
 
 interface InitializingConfiguration {
