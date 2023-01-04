@@ -1,3 +1,4 @@
+import merge from "lodash.merge";
 import init from "./init";
 import authenticate from "./authenticate";
 import { modalSelector, iframeContainerSelector } from "./selectors";
@@ -30,7 +31,9 @@ interface MarketplaceConfiguration {
 }
 
 interface InitializingConfiguration {
+  /** The background color of the loading screen */
   background: string;
+  /** The font color of the loading screen text and loading icon */
   color: string;
 }
 
@@ -153,7 +156,11 @@ const setIframe = (
   if (options) {
     Object.entries(options).forEach(([key, value]) => {
       if (key in state) {
-        state[key] = value;
+        if (state[key] instanceof Object) {
+          state[key] = merge(state[key], value);
+        } else {
+          state[key] = value;
+        }
       }
     });
   }
