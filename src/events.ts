@@ -45,8 +45,15 @@ export type DefaultConfigVar =
   | ValueListConfigVar
   | KeyValueListConfigVar;
 
+export enum InstanceConfigVariableStatus {
+  ACTIVE = "ACTIVE",
+  ERROR = "ERROR",
+  PENDING = "PENDING",
+}
+
 export interface ConnectionConfigVar {
   inputs: Record<string, { value: string }>;
+  status: InstanceConfigVariableStatus | null;
 }
 
 export type ConfigVar = DefaultConfigVar | ConnectionConfigVar;
