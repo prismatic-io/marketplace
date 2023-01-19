@@ -272,6 +272,26 @@ export const close = () => {
   closeDialog();
 };
 
+export const showIntegrations = (options: Options = { usePopover: true }) => {
+  assertInit("showIntegrations");
+  setIframe("integrations", options, {});
+};
+
+export const configureDesigner = ({
+  integrationId,
+  skipRedirectOnRemove,
+  ...options
+}: Options & {
+  integrationId: string;
+  skipRedirectOnRemove?: boolean;
+}) => {
+  assertInit("configureDesigner");
+
+  setIframe(`integrations/${integrationId}`, options, {
+    ...(skipRedirectOnRemove ? { skipRedirectOnRemove: "true" } : {}),
+  });
+};
+
 export { authenticate, init };
 
 export { rootElementId, modalSelector } from "./selectors";
@@ -289,6 +309,8 @@ export {
 } from "./events";
 
 export default {
+  showIntegrations,
+  configureDesigner,
   init,
   authenticate,
   showMarketplace,
