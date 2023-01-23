@@ -9,6 +9,7 @@ import {
   PrismaticMessageEvent,
   setConfigVars,
 } from "./events";
+import { graphqlRequest } from "./graphqlRequest";
 
 type Theme = "DARK" | "LIGHT";
 
@@ -274,6 +275,8 @@ export const close = () => {
 
 export { authenticate, init };
 
+export { graphqlRequest };
+
 export { rootElementId, modalSelector } from "./selectors";
 
 export {
@@ -295,4 +298,5 @@ export default {
   configureIntegration,
   close,
   setConfigVars,
+  graphqlRequest,
 };
