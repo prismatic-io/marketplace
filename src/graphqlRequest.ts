@@ -1,3 +1,4 @@
+import urlJoin from "url-join";
 import { state, assertInit } from "./index";
 
 export interface RequestProps {
@@ -10,7 +11,7 @@ export const graphqlRequest = async ({ query, variables }: RequestProps) => {
 
   const { jwt: accessToken, prismaticUrl } = state;
 
-  const response = await fetch(`${prismaticUrl}/api`, {
+  const response = await fetch(urlJoin(prismaticUrl, "api"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
