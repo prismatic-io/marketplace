@@ -86,7 +86,7 @@ export interface StateProps {
   initComplete: boolean;
   jwt: string;
   translation?: Translation;
-  prismaticUrl?: string;
+  prismaticUrl: string;
   screenConfiguration?: ScreenConfiguration;
   theme?: Theme;
 }

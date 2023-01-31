@@ -1,3 +1,4 @@
+import urlJoin from "url-join";
 import { state, assertInit } from "./index";
 
 export interface AuthenticateProps {
@@ -29,12 +30,15 @@ const authenticate = async (props: AuthenticateProps) => {
 
   const prismaticUrl = props.prismaticUrl ?? state.prismaticUrl;
 
-  const authResponse = await fetch(`${prismaticUrl}/embedded/authenticate`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    method: "post",
-  });
+  const authResponse = await fetch(
+    urlJoin(prismaticUrl, "embedded", "authenticate"),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "post",
+    }
+  );
 
   if (!authResponse.ok) {
     const responseText = await authResponse.text();
